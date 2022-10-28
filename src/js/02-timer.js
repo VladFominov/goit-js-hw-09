@@ -1,5 +1,7 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 
 const inputPicker = document.querySelector('#datetime-picker');
 const timerRef = document.querySelector('.timer');
@@ -24,7 +26,7 @@ const onClick = () => {
     const diff = chosenData - currentDate;
      if (diff <= 0) {
       clearInterval(timerId);
-      return;
+      return Notify.info('The time has gone');;
     }  
     const dayTimer = convertMs(diff);
     console.log((diff))
@@ -51,7 +53,7 @@ const options = {
         console.log(selectedDates)
 
         if (selectedDates[0] < currentDate) {        
-        return alert ("Please choose a date in the future")
+        return Notify.failure("Please choose a date in the future")
         } else {
           btnStart.disabled = false;
           chosenData = selectedDates[0];
