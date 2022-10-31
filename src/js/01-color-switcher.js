@@ -7,17 +7,25 @@ const body = document.body;
 
 let timerId = null;
 
+btnStop.disabled = true;
+
+function firstChangeColor() {
+let randomColor = getRandomHexColor();
+  body.style.backgroundColor = randomColor;
+}
+ 
 const onStartClick = (e) => {
   btnStart.disabled = true;
-    timerId = setInterval(() => {
-      const randomColor = getRandomHexColor();
-  body.style.backgroundColor = randomColor;
-}, 1000)
+  btnStop.disabled = false;
+ firstChangeColor()
+    timerId = setInterval(firstChangeColor, 1000)
 };
 
 const onStopClick = (e) => {
   clearInterval(timerId);
   btnStart.disabled = false;
+  btnStop.disabled = true;
+  
 };
 
 btnStart.addEventListener('click', onStartClick)
