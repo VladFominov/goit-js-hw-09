@@ -9,16 +9,16 @@ let timerId = null;
 
 btnStop.disabled = true;
 
-function firstChangeColor() {
-let randomColor = getRandomHexColor();
+function onStartClick() {
+  let randomColor = getRandomHexColor();
   body.style.backgroundColor = randomColor;
 }
  
-const onStartClick = (e) => {
+const onClick = (e) => {
   btnStart.disabled = true;
   btnStop.disabled = false;
- firstChangeColor()
-    timerId = setInterval(firstChangeColor, 1000)
+ onStartClick();
+    timerId = setInterval(onStartClick, 1000);
 };
 
 const onStopClick = (e) => {
@@ -28,7 +28,7 @@ const onStopClick = (e) => {
   
 };
 
-btnStart.addEventListener('click', onStartClick)
+btnStart.addEventListener('click', onClick)
 btnStop.addEventListener('click', onStopClick)
 
 function getRandomHexColor() {

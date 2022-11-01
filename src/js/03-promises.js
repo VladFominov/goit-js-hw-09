@@ -11,8 +11,9 @@ console.log(inputFirstDelay.eventTarget)
 
 const onSubmit = (e) => {
   e.preventDefault();
+let delayStep = Number(inputFirstDelay.value);
   for (let i = 1; i < inputAmount.value; i += 1) {
-    let delayStep = Number(inputFirstDelay.value) + Number(inputStepDelay.value) * i;
+    
   createPromise(i, delayStep)
   .then(({ position, delay }) => {
     Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -20,6 +21,7 @@ const onSubmit = (e) => {
    .catch(({ position, delay }) => {
     Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
    })
+     delayStep += Number(inputStepDelay.value);
 }
 }
 
@@ -37,5 +39,4 @@ function createPromise(position, delay) {
   });
 }
 
-// createPromise()
    formRef.addEventListener('submit', onSubmit);

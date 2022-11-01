@@ -17,7 +17,7 @@ btnStart.disabled = true;
 let chosenData;
 console.log(chosenData)
 
-function firstClickStart(timerId) {
+function timerStart(timerId) {
  const currentDate = new Date();
  const diff = chosenData - currentDate;
  if (diff <= 0) {
@@ -25,16 +25,16 @@ function firstClickStart(timerId) {
    return Notify.info('The time has gone');
  }
  const dayTimer = convertMs(diff);
- console.log(diff);
- timerData(dayTimer);
+ 
+ timerInfo(dayTimer);
  }
 
 const onClick = () => {
   btnStart.setAttribute('disabled', 'disabled');
   inputPicker.setAttribute('disabled', 'disabled');
-  firstClickStart();
+  timerStart();
   const timerId = setInterval(() => {
-   firstClickStart(timerId);    
+   timerStart(timerId);    
 }, 1000)
 }
 
@@ -90,7 +90,7 @@ function addLeadingZero(value) {
     return String(value).padStart(2, '0');
 }
 
-function timerData( { days, hours, minutes, seconds }) {
+function timerInfo( { days, hours, minutes, seconds }) {
   $days.textContent = days
   $hours.textContent = hours;
   $minutes.textContent = minutes;
