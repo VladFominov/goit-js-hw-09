@@ -11,7 +11,7 @@ console.log(inputFirstDelay.eventTarget)
 
 const onSubmit = (e) => {
   e.preventDefault();
-  for (let i = 0; i < inputAmount.value; i += 1) {
+  for (let i = 1; i < inputAmount.value; i += 1) {
     let delayStep = Number(inputFirstDelay.value) + Number(inputStepDelay.value) * i;
   createPromise(i, delayStep)
   .then(({ position, delay }) => {

@@ -17,22 +17,24 @@ btnStart.disabled = true;
 let chosenData;
 console.log(chosenData)
 
+function firstClickStart(timerId) {
+ const currentDate = new Date();
+ const diff = chosenData - currentDate;
+ if (diff <= 0) {
+   clearInterval(timerId);
+   return Notify.info('The time has gone');
+ }
+ const dayTimer = convertMs(diff);
+ console.log(diff);
+ timerData(dayTimer);
+ }
+
 const onClick = () => {
   btnStart.setAttribute('disabled', 'disabled');
   inputPicker.setAttribute('disabled', 'disabled');
-  
+  firstClickStart();
   const timerId = setInterval(() => {
-    const currentDate = new Date();
-    const diff = chosenData - currentDate;
-     if (diff <= 0) {
-      clearInterval(timerId);
-      return Notify.info('The time has gone');;
-    }  
-    const dayTimer = convertMs(diff);
-    console.log((diff))
-    timerData(dayTimer);
-   
-    
+   firstClickStart(timerId);    
 }, 1000)
 }
 
